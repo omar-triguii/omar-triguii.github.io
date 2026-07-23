@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omar Trigui — Cloud Native &amp; Platform Engineer</title>
+<meta name="description" content="Omar Trigui — Cloud Native & Platform Engineer, Kubernetes specialist. 4+ years of experience: GitOps, DevSecOps, multi-cluster, internal developer platforms.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%98%B8%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-alt: #161b22;
+    --border: #21262d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --accent-2: #3fb950;
+    --tag-bg: #1f2937;
+    --btn-text-on-accent: #0d1117;
+    --nav-bg: rgba(13, 17, 23, 0.9);
+    --max-w: 880px;
+    color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    --bg: #ffffff;
+    --bg-alt: #f6f8fa;
+    --border: #d0d7de;
+    --text: #1f2328;
+    --text-muted: #57606a;
+    --accent: #0969da;
+    --accent-2: #1a7f37;
+    --tag-bg: #eaeef2;
+    --btn-text-on-accent: #ffffff;
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    color-scheme: light;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.25rem; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--nav-bg);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .container {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 3.5rem; max-width: 1100px;
+  }
+  nav .brand { font-weight: 700; color: var(--text); font-family: "SF Mono", "Fira Code", Consolas, monospace; font-size: 0.95rem; white-space: nowrap; }
+  nav .brand span { color: var(--accent-2); }
+  nav ul { display: flex; gap: 1rem; list-style: none; align-items: center; }
+  nav ul a { color: var(--text-muted); font-size: 0.875rem; white-space: nowrap; }
+  nav ul a:hover { color: var(--text); text-decoration: none; }
+  nav a.nav-cv {
+    border: 1px solid var(--accent); border-radius: 6px;
+    padding: 0.3rem 0.7rem; color: var(--accent); font-weight: 600;
+  }
+  nav a.nav-cv:hover { background: var(--accent); color: var(--btn-text-on-accent); }
+  nav a.nav-lang { font-weight: 600; }
+  nav .theme-toggle {
+    background: none; border: 1px solid var(--border); border-radius: 6px;
+    color: var(--text); font-size: 0.9rem; padding: 0.25rem 0.5rem;
+    cursor: pointer; line-height: 1;
+  }
+  nav .theme-toggle:hover { border-color: var(--accent); }
+  @media (max-width: 640px) { nav ul { display: none; } }
+
+  /* Hero */
+  header.hero { padding: 5rem 0 4rem; }
+  .hero .kicker {
+    font-family: "SF Mono", "Fira Code", Consolas, monospace;
+    color: var(--accent-2); font-size: 0.9rem; margin-bottom: 0.75rem;
+  }
+  .hero .kicker .type {
+    display: inline-block; overflow: hidden; vertical-align: bottom;
+    white-space: nowrap; max-width: 0;
+    border-right: 0.55em solid var(--accent-2);
+    animation: typing 1.1s steps(8, end) 0.4s forwards, caret 0.9s step-end infinite;
+  }
+  @keyframes typing { to { max-width: 8ch; } }
+  @keyframes caret { 0%, 100% { border-color: var(--accent-2); } 50% { border-color: transparent; } }
+  .type-cursor {
+    display: inline-block; width: 0.5em; height: 1em;
+    background: var(--accent-2); margin-left: 3px;
+    vertical-align: baseline;
+    animation: blink 0.9s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .js-typing .hero h1, .js-typing .hero h2 { min-height: 1.2em; }
+  .js-typing .hero p.lead, .js-typing .hero .links {
+    opacity: 0; transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .js-typing.hero-done .hero p.lead, .js-typing.hero-done .hero .links {
+    opacity: 1; transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero .kicker .type { animation: none; max-width: none; border-right: none; }
+  }
+  .hero h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.15; margin-bottom: 0.5rem; }
+  .hero h2 { font-size: clamp(1.1rem, 3vw, 1.4rem); color: var(--text-muted); font-weight: 500; margin-bottom: 1.25rem; }
+  .hero p.lead { color: var(--text-muted); max-width: 640px; margin-bottom: 2rem; }
+  .hero .links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .btn {
+    display: inline-block; padding: 0.55rem 1.1rem;
+    border: 1px solid var(--border); border-radius: 6px;
+    color: var(--text); font-size: 0.875rem; font-weight: 600;
+    background: var(--bg-alt); transition: border-color 0.15s, background 0.15s;
+  }
+  .btn:hover { border-color: var(--accent); text-decoration: none; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--btn-text-on-accent); }
+  .btn.primary:hover { opacity: 0.9; }
+
+  /* Sections */
+  section { padding: 3.5rem 0; border-top: 1px solid var(--border); }
+  section h2.section-title {
+    font-size: 1.5rem; margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  section h2.section-title::before {
+    content: ""; display: inline-block; width: 0.6rem; height: 1.4rem;
+    background: var(--accent); border-radius: 2px;
+  }
+
+  /* Skills */
+  .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    background: var(--tag-bg); color: var(--text);
+    font-size: 0.75rem; padding: 0.15rem 0.55rem; border-radius: 999px;
+    border: 1px solid var(--border);
+  }
+
+  /* Skills blocks */
+  .skill-block {
+    --c: var(--accent);
+    background: var(--bg-alt);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--c) 12%, var(--bg-alt)), var(--bg-alt) 55%);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--c);
+    border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 1rem;
+  }
+  .skill-block:last-child { margin-bottom: 0; }
+  .skill-head {
+    display: flex; align-items: center; gap: 0.85rem;
+    cursor: pointer; list-style: none; user-select: none;
+  }
+  .skill-head::-webkit-details-marker { display: none; }
+  .skill-head .lvl {
+    font-family: "SF Mono", "Fira Code", Consolas, monospace;
+    font-size: 0.72rem; color: var(--c); font-weight: 700; letter-spacing: 0.08em;
+  }
+  .skill-head .block-icon {
+    width: 2.4rem; height: 2.4rem; flex-shrink: 0;
+    background: #fff; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--c) 45%, transparent);
+  }
+  .skill-head h3 { font-size: 1.05rem; color: var(--text); line-height: 1.3; }
+  .skill-head .sub { font-size: 0.8rem; color: var(--text-muted); font-weight: 400; }
+  .skill-head .chev {
+    margin-left: auto; flex-shrink: 0;
+    width: 0.65rem; height: 0.65rem;
+    border-right: 2px solid var(--c); border-bottom: 2px solid var(--c);
+    transform: rotate(45deg); transition: transform 0.25s ease;
+  }
+  .skill-block[open] .skill-head .chev { transform: rotate(225deg); }
+  .skill-block[open] .skill-head { margin-bottom: 1.1rem; }
+  .skill-body { animation: unfold 0.3s ease; }
+  @keyframes unfold {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .marquee-track {
+    display: flex; width: max-content;
+    animation: marquee var(--dur, 30s) linear infinite;
+    animation-play-state: paused;
+  }
+  .marquee.reverse .marquee-track { animation-direction: reverse; }
+  .marquee:hover .marquee-track { animation-play-state: running; }
+  .marquee-group {
+    display: flex; flex: none; gap: 0.6rem; padding-right: 0.6rem;
+    align-items: stretch;
+  }
+  .tech {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.45rem; width: 96px; height: 78px;
+    background: #fff; border-radius: 12px; border: 1px solid #e5e7eb;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .tech:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(88, 166, 255, 0.25); }
+  .tech img { width: 30px; height: 30px; object-fit: contain; }
+  .tech span {
+    font-size: 0.55rem; font-weight: 700; color: #4b5563;
+    text-transform: uppercase; letter-spacing: 0.06em; text-align: center;
+    white-space: nowrap; font-family: "SF Mono", "Fira Code", Consolas, monospace;
+  }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; width: auto; }
+    .marquee-group { flex-wrap: wrap; }
+    .marquee-group[aria-hidden="true"] { display: none; }
+    .marquee { -webkit-mask-image: none; mask-image: none; }
+  }
+
+  /* Experience */
+  .job { margin-bottom: 2.5rem; padding-left: 1.5rem; border-left: 2px solid var(--border); position: relative; }
+  .job:last-child { margin-bottom: 0; }
+  .job::before {
+    content: ""; position: absolute; left: -7px; top: 6px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .job .job-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1rem; margin-bottom: 0.2rem; }
+  .job h3 { font-size: 1.1rem; }
+  .job .period { color: var(--text-muted); font-size: 0.85rem; font-family: "SF Mono", "Fira Code", Consolas, monospace; }
+  .job .company { color: var(--accent-2); font-weight: 600; font-size: 0.95rem; margin-bottom: 0.6rem; }
+  .job ul { list-style: none; margin-bottom: 0.75rem; }
+  .job ul li { color: var(--text-muted); font-size: 0.925rem; margin-bottom: 0.45rem; padding-left: 1.1rem; position: relative; }
+  .job ul li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); }
+
+  /* Projet détaillé (dépliable) */
+  .proj {
+    margin: 0.6rem 0 0.9rem;
+    border: 1px solid var(--border); border-radius: 10px;
+    background: var(--bg-alt); overflow: hidden;
+  }
+  .proj summary {
+    padding: 0.6rem 0.95rem; cursor: pointer; list-style: none; user-select: none;
+    font-size: 0.85rem; font-weight: 600; color: var(--accent);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .proj summary::-webkit-details-marker { display: none; }
+  .proj summary::before {
+    content: "+"; font-family: "SF Mono", "Fira Code", Consolas, monospace;
+    font-weight: 700; transition: transform 0.2s ease;
+  }
+  .proj[open] summary::before { content: "−"; }
+  .proj-body { padding: 0.25rem 0.95rem 1rem; animation: unfold 0.25s ease; }
+  .proj-body h4 { font-size: 0.95rem; color: var(--text); margin-bottom: 0.5rem; }
+  .proj-body .tags { margin-bottom: 0.85rem; }
+  .proj-body .steps-label {
+    font-family: "SF Mono", "Fira Code", Consolas, monospace;
+    font-size: 0.75rem; color: var(--accent-2); margin-bottom: 0.4rem;
+  }
+  .proj-body ol { padding-left: 1.25rem; }
+  .proj-body ol li {
+    color: var(--text-muted); font-size: 0.875rem; margin-bottom: 0.4rem;
+    padding-left: 0.2rem;
+  }
+  .proj-body ol li::marker { color: var(--accent); font-weight: 600; }
+
+  /* Certifications */
+  .cert-cat { margin-bottom: 2.25rem; }
+  .cert-cat:last-child { margin-bottom: 0; }
+  .cert-cat h3 {
+    font-size: 1.05rem; margin-bottom: 1rem; color: var(--text);
+    font-family: "SF Mono", "Fira Code", Consolas, monospace;
+  }
+  .cert-cat h3 span { color: var(--accent-2); }
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.85rem; }
+  .cert {
+    background: var(--bg-alt); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1rem; font-size: 0.875rem; font-weight: 600; color: var(--text);
+    display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.65rem;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .cert:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 24px rgba(88, 166, 255, 0.15);
+    text-decoration: none;
+  }
+  .cert img { width: 96px; height: 96px; object-fit: contain; transition: transform 0.3s ease; }
+  .cert:hover img { transform: scale(1.12) rotate(-3deg); }
+  .cert small { display: block; font-weight: 400; color: var(--text-muted); font-size: 0.72rem; }
+
+  /* Kubestronaut featured */
+  .kubestronaut {
+    display: flex; align-items: center; gap: 1.5rem;
+    background: linear-gradient(135deg, rgba(88, 166, 255, 0.08), rgba(63, 185, 80, 0.08));
+    border: 1px solid var(--accent); border-radius: 12px;
+    padding: 1.5rem; margin-bottom: 2.25rem; color: var(--text);
+    transition: box-shadow 0.3s ease;
+  }
+  .kubestronaut:hover { text-decoration: none; box-shadow: 0 0 32px rgba(88, 166, 255, 0.25); }
+  .kubestronaut img { width: 110px; height: 110px; object-fit: contain; animation: floaty 3.5s ease-in-out infinite; }
+  .kubestronaut h3 { font-size: 1.25rem; margin-bottom: 0.25rem; }
+  .kubestronaut p { color: var(--text-muted); font-size: 0.9rem; }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @media (max-width: 540px) { .kubestronaut { flex-direction: column; text-align: center; } }
+  @media (prefers-reduced-motion: reduce) {
+    .kubestronaut img { animation: none; }
+    .cert, .cert img { transition: none; }
+  }
+
+  /* Langues */
+  .lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; }
+  .lang-card {
+    background: var(--bg-alt); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1.25rem; transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .lang-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .lang-card .lang-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
+  .lang-card h3 { font-size: 1.05rem; }
+  .lang-level {
+    font-family: "SF Mono", "Fira Code", Consolas, monospace;
+    font-size: 0.75rem; font-weight: 700; color: var(--btn-text-on-accent);
+    background: var(--accent-2); padding: 0.15rem 0.6rem; border-radius: 999px;
+  }
+  .lang-card p { color: var(--text-muted); font-size: 0.875rem; margin-bottom: 0.75rem; }
+  .lang-card a.doc-link { font-size: 0.825rem; }
+  @media (prefers-reduced-motion: reduce) { .lang-card { transition: none; } }
+
+  /* Education / volunteering */
+  .edu-item { margin-bottom: 1.5rem; }
+  .edu-item:last-child { margin-bottom: 0; }
+  .edu-item h3 { font-size: 1rem; }
+  .edu-item .meta { color: var(--text-muted); font-size: 0.875rem; }
+  .edu-item .edu-detail { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.35rem; max-width: 720px; }
+
+  /* Blog */
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1rem; }
+  @media (max-width: 480px) { .blog-grid { grid-template-columns: 1fr; } }
+  .blog-card {
+    display: flex; flex-direction: column; gap: 0.6rem;
+    background: var(--bg-alt); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.25rem 1.5rem;
+    color: var(--text); transition: border-color 0.15s, transform 0.15s;
+  }
+  .blog-card:hover { border-color: var(--accent); text-decoration: none; transform: translateY(-2px); }
+  .blog-card .meta {
+    font-family: "SF Mono", "Fira Code", Consolas, monospace;
+    color: var(--accent-2); font-size: 0.75rem;
+  }
+  .blog-card h3 { font-size: 1rem; line-height: 1.4; }
+  .blog-card p { color: var(--text-muted); font-size: 0.85rem; flex-grow: 1; }
+  .blog-card .read { font-size: 0.825rem; color: var(--accent); font-weight: 600; }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--border); padding: 3rem 0; text-align: center; }
+  footer .links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.25rem; margin-bottom: 1rem; }
+  footer p { color: var(--text-muted); font-size: 0.8rem; }
+  .mono { font-family: "SF Mono", "Fira Code", Consolas, monospace; }
+</style>
+<script>try { document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") || "dark"); } catch (e) {}</script>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="brand">omar-trigui<span>@cloud</span>:~$</div>
+    <ul>
+      <li><a href="#competences">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#formation">Education</a></li>
+      <li><a class="nav-cv" href="assets/docs/cv-omar-trigui-fr.pdf" download>⬇ Download CV</a></li>
+      <li><a class="nav-lang" href="index.html" title="Version française">🇫🇷 FR</a></li>
+      <li><button class="theme-toggle" type="button" aria-label="Toggle light/dark theme" title="Light/dark theme">🌙</button></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <p class="kicker"><span class="type">$ whoami</span></p>
+    <h1>Omar Trigui</h1>
+    <h2>Cloud Native &amp; Platform Engineer — Kubernetes Specialist · Kubestronaut 🚀</h2>
+    <p class="lead">
+      4+ years of experience designing, deploying and operating large-scale Kubernetes
+      and CNCF platforms. Skilled in GitOps/DevSecOps automation, multi-cluster
+      infrastructures and building internal developer platforms that improve
+      reliability, security and delivery speed.
+    </p>
+    <div class="links">
+      <a class="btn primary" href="mailto:trigui.omar@proton.me">Contact me</a>
+      <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://www.credly.com/users/omar-trigui.5b76e2c1" target="_blank" rel="noopener">Credly badges</a>
+    </div>
+  </div>
+</header>
+
+<section id="competences">
+  <div class="container">
+    <h2 class="section-title">Technical Skills</h2>
+
+    <details class="skill-block" open style="--c: #326ce5">
+      <summary class="skill-head">
+        <span class="lvl">L1</span>
+        <span class="block-icon">☸️</span>
+        <div><h3>Container Orchestration</h3><div class="sub">Deploying and operating clusters at scale</div></div>
+        <span class="chev"></span>
+      </summary>
+      <div class="skill-body">
+        <div class="marquee" style="--dur: 28s">
+          <div class="marquee-track">
+            <div class="marquee-group">
+              <div class="tech"><img src="assets/logos/kubernetes.svg" alt="Kubernetes" loading="lazy"><span>Kubernetes</span></div>
+              <div class="tech"><img src="assets/logos/redhatopenshift.svg" alt="OpenShift" loading="lazy"><span>OpenShift</span></div>
+              <div class="tech"><img src="assets/logos/k3s.svg" alt="K3s" loading="lazy"><span>K3s</span></div>
+              <div class="tech"><img src="assets/logos/redhatopenshift.svg" alt="Hypershift" loading="lazy"><span>Hypershift</span></div>
+              <div class="tech"><img src="assets/logos/docker.svg" alt="Docker" loading="lazy"><span>Docker</span></div>
+              <div class="tech"><img src="assets/logos/helm.svg" alt="Helm" loading="lazy"><span>Helm</span></div>
+              <div class="tech"><img src="assets/logos/kustomize.png" alt="Kustomize" loading="lazy"><span>Kustomize</span></div>
+              <div class="tech"><img src="assets/logos/helmfile.png" alt="Helmfile" loading="lazy"><span>Helmfile</span></div>
+            </div>
+            <div class="marquee-group" aria-hidden="true">
+              <div class="tech"><img src="assets/logos/kubernetes.svg" alt="Kubernetes" loading="lazy"><span>Kubernetes</span></div>
+              <div class="tech"><img src="assets/logos/redhatopenshift.svg" alt="OpenShift" loading="lazy"><span>OpenShift</span></div>
+              <div class="tech"><img src="assets/logos/k3s.svg" alt="K3s" loading="lazy"><span>K3s</span></div>
+              <div class="tech"><img src="assets/logos/redhatopenshift.svg" alt="Hypershift" loading="lazy"><span>Hypershift</span></div>
+              <div class="tech"><img src="assets/logos/docker.svg" alt="Docker" loading="lazy"><span>Docker</span></div>
+              <div class="tech"><img src="assets/logos/helm.svg" alt="Helm" loading="lazy"><span>Helm</span></div>
+              <div class="tech"><img src="assets/logos/kustomize.png" alt="Kustomize" loading="lazy"><span>Kustomize</span></div>
+              <div class="tech"><img src="assets/logos/helmfile.png" alt="Helmfile" loading="lazy"><span>Helmfile</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="skill-block" open style="--c: #a371f7">
+      <summary class="skill-head">
+        <span class="lvl">L2</span>
+        <span class="block-icon">☁️</span>
+        <div><h3>Cloud &amp; Infrastructure as Code</h3><div class="sub">Multi-cloud infrastructure provisioning</div></div>
+        <span class="chev"></span>
+      </summary>
+      <div class="skill-body">
+        <div class="marquee reverse" style="--dur: 32s">
+          <div class="marquee-track">
+            <div class="marquee-group">
+              <div class="tech"><img src="assets/logos/aws.svg" alt="AWS" loading="lazy"><span>AWS</span></div>
+              <div class="tech"><img src="assets/logos/azure.svg" alt="Azure" loading="lazy"><span>Azure</span></div>
+              <div class="tech"><img src="assets/logos/scaleway.svg" alt="Scaleway" loading="lazy"><span>Scaleway</span></div>
+              <div class="tech"><img src="assets/logos/proxmox.svg" alt="Proxmox VE" loading="lazy"><span>Proxmox VE</span></div>
+              <div class="tech"><img src="assets/logos/terraform.svg" alt="Terraform" loading="lazy"><span>Terraform</span></div>
+              <div class="tech"><img src="assets/logos/opentofu.svg" alt="OpenTofu" loading="lazy"><span>OpenTofu</span></div>
+              <div class="tech"><img src="assets/logos/terragrunt.svg" alt="Terragrunt" loading="lazy"><span>Terragrunt</span></div>
+              <div class="tech"><img src="assets/logos/terramate.png" alt="Terramate" loading="lazy"><span>Terramate</span></div>
+              <div class="tech"><img src="assets/logos/crossplane.svg" alt="Crossplane" loading="lazy"><span>Crossplane</span></div>
+            </div>
+            <div class="marquee-group" aria-hidden="true">
+              <div class="tech"><img src="assets/logos/aws.svg" alt="AWS" loading="lazy"><span>AWS</span></div>
+              <div class="tech"><img src="assets/logos/azure.svg" alt="Azure" loading="lazy"><span>Azure</span></div>
+              <div class="tech"><img src="assets/logos/scaleway.svg" alt="Scaleway" loading="lazy"><span>Scaleway</span></div>
+              <div class="tech"><img src="assets/logos/proxmox.svg" alt="Proxmox VE" loading="lazy"><span>Proxmox VE</span></div>
+              <div class="tech"><img src="assets/logos/terraform.svg" alt="Terraform" loading="lazy"><span>Terraform</span></div>
+              <div class="tech"><img src="assets/logos/opentofu.svg" alt="OpenTofu" loading="lazy"><span>OpenTofu</span></div>
+              <div class="tech"><img src="assets/logos/terragrunt.svg" alt="Terragrunt" loading="lazy"><span>Terragrunt</span></div>
+              <div class="tech"><img src="assets/logos/terramate.png" alt="Terramate" loading="lazy"><span>Terramate</span></div>
+              <div class="tech"><img src="assets/logos/crossplane.svg" alt="Crossplane" loading="lazy"><span>Crossplane</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="skill-block" open style="--c: #f0883e">
+      <summary class="skill-head">
+        <span class="lvl">L3</span>
+        <span class="block-icon">🔄</span>
+        <div><h3>GitOps &amp; CI/CD</h3><div class="sub">Git-driven continuous delivery</div></div>
+        <span class="chev"></span>
+      </summary>
+      <div class="skill-body">
+        <div class="marquee" style="--dur: 22s">
+          <div class="marquee-track">
+            <div class="marquee-group">
+              <div class="tech"><img src="assets/logos/argo.svg" alt="ArgoCD" loading="lazy"><span>ArgoCD</span></div>
+              <div class="tech"><img src="assets/logos/argo-rollouts.png" alt="Argo Rollouts" loading="lazy"><span>Argo Rollouts</span></div>
+              <div class="tech"><img src="assets/logos/kargo.png" alt="Kargo" loading="lazy"><span>Kargo</span></div>
+              <div class="tech"><img src="assets/logos/flux.svg" alt="Flux" loading="lazy"><span>Flux</span></div>
+              <div class="tech"><img src="assets/logos/gitlab.svg" alt="GitLab CI" loading="lazy"><span>GitLab CI</span></div>
+              <div class="tech"><img src="assets/logos/kubebuilder.svg" alt="Kubebuilder" loading="lazy"><span>Kubebuilder</span></div>
+            </div>
+            <div class="marquee-group" aria-hidden="true">
+              <div class="tech"><img src="assets/logos/argo.svg" alt="ArgoCD" loading="lazy"><span>ArgoCD</span></div>
+              <div class="tech"><img src="assets/logos/argo-rollouts.png" alt="Argo Rollouts" loading="lazy"><span>Argo Rollouts</span></div>
+              <div class="tech"><img src="assets/logos/kargo.png" alt="Kargo" loading="lazy"><span>Kargo</span></div>
+              <div class="tech"><img src="assets/logos/flux.svg" alt="Flux" loading="lazy"><span>Flux</span></div>
+              <div class="tech"><img src="assets/logos/gitlab.svg" alt="GitLab CI" loading="lazy"><span>GitLab CI</span></div>
+              <div class="tech"><img src="assets/logos/kubebuilder.svg" alt="Kubebuilder" loading="lazy"><span>Kubebuilder</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="skill-block" open style="--c: #39c5cf">
+      <summary class="skill-head">
+        <span class="lvl">L4</span>
+        <span class="block-icon">📈</span>
+        <div><h3>Observability &amp; Reliability</h3><div class="sub">Monitoring, alerting, tracing and service mesh</div></div>
+        <span class="chev"></span>
+      </summary>
+      <div class="skill-body">
+        <div class="marquee reverse" style="--dur: 36s">
+          <div class="marquee-track">
+            <div class="marquee-group">
+              <div class="tech"><img src="assets/logos/prometheus.svg" alt="Prometheus" loading="lazy"><span>Prometheus</span></div>
+              <div class="tech"><img src="assets/logos/prometheus.svg" alt="Alertmanager" loading="lazy"><span>Alertmanager</span></div>
+              <div class="tech"><img src="assets/logos/grafana.svg" alt="Grafana" loading="lazy"><span>Grafana</span></div>
+              <div class="tech"><img src="assets/logos/pagerduty.svg" alt="PagerDuty" loading="lazy"><span>PagerDuty</span></div>
+              <div class="tech"><img src="assets/logos/opentelemetry.svg" alt="OpenTelemetry" loading="lazy"><span>OpenTelemetry</span></div>
+              <div class="tech"><img src="assets/logos/jaeger.svg" alt="Jaeger" loading="lazy"><span>Jaeger</span></div>
+              <div class="tech"><img src="assets/logos/istio.svg" alt="Istio" loading="lazy"><span>Istio</span></div>
+              <div class="tech"><img src="assets/logos/kiali.png" alt="Kiali" loading="lazy"><span>Kiali</span></div>
+              <div class="tech"><img src="assets/logos/envoy.svg" alt="Envoy Gateway" loading="lazy"><span>Envoy Gateway</span></div>
+            </div>
+            <div class="marquee-group" aria-hidden="true">
+              <div class="tech"><img src="assets/logos/prometheus.svg" alt="Prometheus" loading="lazy"><span>Prometheus</span></div>
+              <div class="tech"><img src="assets/logos/prometheus.svg" alt="Alertmanager" loading="lazy"><span>Alertmanager</span></div>
+              <div class="tech"><img src="assets/logos/grafana.svg" alt="Grafana" loading="lazy"><span>Grafana</span></div>
+              <div class="tech"><img src="assets/logos/pagerduty.svg" alt="PagerDuty" loading="lazy"><span>PagerDuty</span></div>
+              <div class="tech"><img src="assets/logos/opentelemetry.svg" alt="OpenTelemetry" loading="lazy"><span>OpenTelemetry</span></div>
+              <div class="tech"><img src="assets/logos/jaeger.svg" alt="Jaeger" loading="lazy"><span>Jaeger</span></div>
+              <div class="tech"><img src="assets/logos/istio.svg" alt="Istio" loading="lazy"><span>Istio</span></div>
+              <div class="tech"><img src="assets/logos/kiali.png" alt="Kiali" loading="lazy"><span>Kiali</span></div>
+              <div class="tech"><img src="assets/logos/envoy.svg" alt="Envoy Gateway" loading="lazy"><span>Envoy Gateway</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="skill-block" open style="--c: #f85149">
+      <summary class="skill-head">
+        <span class="lvl">L5</span>
+        <span class="block-icon">🔐</span>
+        <div><h3>Security &amp; Secrets</h3><div class="sub">Secrets, certificates, identity and security policies</div></div>
+        <span class="chev"></span>
+      </summary>
+      <div class="skill-body">
+        <div class="marquee" style="--dur: 40s">
+          <div class="marquee-track">
+            <div class="marquee-group">
+              <div class="tech"><img src="assets/logos/vault.svg" alt="Vault" loading="lazy"><span>Vault</span></div>
+              <div class="tech"><img src="assets/logos/openbao.svg" alt="OpenBao" loading="lazy"><span>OpenBao</span></div>
+              <div class="tech"><img src="assets/logos/external-secrets.svg" alt="External Secrets" loading="lazy"><span>External Secrets</span></div>
+              <div class="tech"><img src="assets/logos/cert-manager.svg" alt="cert-manager" loading="lazy"><span>cert-manager</span></div>
+              <div class="tech"><img src="assets/logos/letsencrypt.svg" alt="Let's Encrypt" loading="lazy"><span>Let's Encrypt</span></div>
+              <div class="tech"><img src="assets/logos/keycloak.svg" alt="Keycloak" loading="lazy"><span>Keycloak</span></div>
+              <div class="tech"><img src="assets/logos/opa.png" alt="OPA" loading="lazy"><span>OPA</span></div>
+              <div class="tech"><img src="assets/logos/falco.svg" alt="Falco" loading="lazy"><span>Falco</span></div>
+              <div class="tech"><img src="assets/logos/checkov.png" alt="Checkov" loading="lazy"><span>Checkov</span></div>
+              <div class="tech"><img src="assets/logos/sops.svg" alt="SOPS" loading="lazy"><span>SOPS</span></div>
+              <div class="tech"><img src="assets/logos/cloudflare.svg" alt="Cloudflare" loading="lazy"><span>Cloudflare</span></div>
+              <div class="tech"><img src="assets/logos/trivy.svg" alt="Trivy" loading="lazy"><span>Trivy</span></div>
+            </div>
+            <div class="marquee-group" aria-hidden="true">
+              <div class="tech"><img src="assets/logos/vault.svg" alt="Vault" loading="lazy"><span>Vault</span></div>
+              <div class="tech"><img src="assets/logos/openbao.svg" alt="OpenBao" loading="lazy"><span>OpenBao</span></div>
+              <div class="tech"><img src="assets/logos/external-secrets.svg" alt="External Secrets" loading="lazy"><span>External Secrets</span></div>
+              <div class="tech"><img src="assets/logos/cert-manager.svg" alt="cert-manager" loading="lazy"><span>cert-manager</span></div>
+              <div class="tech"><img src="assets/logos/letsencrypt.svg" alt="Let's Encrypt" loading="lazy"><span>Let's Encrypt</span></div>
+              <div class="tech"><img src="assets/logos/keycloak.svg" alt="Keycloak" loading="lazy"><span>Keycloak</span></div>
+              <div class="tech"><img src="assets/logos/opa.png" alt="OPA" loading="lazy"><span>OPA</span></div>
+              <div class="tech"><img src="assets/logos/falco.svg" alt="Falco" loading="lazy"><span>Falco</span></div>
+              <div class="tech"><img src="assets/logos/checkov.png" alt="Checkov" loading="lazy"><span>Checkov</span></div>
+              <div class="tech"><img src="assets/logos/sops.svg" alt="SOPS" loading="lazy"><span>SOPS</span></div>
+              <div class="tech"><img src="assets/logos/cloudflare.svg" alt="Cloudflare" loading="lazy"><span>Cloudflare</span></div>
+              <div class="tech"><img src="assets/logos/trivy.svg" alt="Trivy" loading="lazy"><span>Trivy</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="skill-block" open style="--c: #d29922">
+      <summary class="skill-head">
+        <span class="lvl">L6</span>
+        <span class="block-icon">🧰</span>
+        <div><h3>Other</h3><div class="sub">Databases, registries, developer portals and tooling</div></div>
+        <span class="chev"></span>
+      </summary>
+      <div class="skill-body">
+        <div class="marquee reverse" style="--dur: 28s">
+          <div class="marquee-track">
+            <div class="marquee-group">
+              <div class="tech"><img src="assets/logos/postgresql.svg" alt="PostgreSQL" loading="lazy"><span>PostgreSQL</span></div>
+              <div class="tech"><img src="assets/logos/backstage.svg" alt="Backstage" loading="lazy"><span>Backstage</span></div>
+              <div class="tech"><img src="assets/logos/rancher.svg" alt="Rancher" loading="lazy"><span>Rancher</span></div>
+              <div class="tech"><img src="assets/logos/harbor.svg" alt="Harbor" loading="lazy"><span>Harbor</span></div>
+              <div class="tech"><img src="assets/logos/external-dns.png" alt="External DNS" loading="lazy"><span>External DNS</span></div>
+              <div class="tech"><img src="assets/logos/bash.svg" alt="Bash" loading="lazy"><span>Bash</span></div>
+              <div class="tech"><img src="assets/logos/go.svg" alt="Go" loading="lazy"><span>Go</span></div>
+              <div class="tech"><img src="assets/logos/mkdocs.svg" alt="MkDocs" loading="lazy"><span>MkDocs</span></div>
+            </div>
+            <div class="marquee-group" aria-hidden="true">
+              <div class="tech"><img src="assets/logos/postgresql.svg" alt="PostgreSQL" loading="lazy"><span>PostgreSQL</span></div>
+              <div class="tech"><img src="assets/logos/backstage.svg" alt="Backstage" loading="lazy"><span>Backstage</span></div>
+              <div class="tech"><img src="assets/logos/rancher.svg" alt="Rancher" loading="lazy"><span>Rancher</span></div>
+              <div class="tech"><img src="assets/logos/harbor.svg" alt="Harbor" loading="lazy"><span>Harbor</span></div>
+              <div class="tech"><img src="assets/logos/external-dns.png" alt="External DNS" loading="lazy"><span>External DNS</span></div>
+              <div class="tech"><img src="assets/logos/bash.svg" alt="Bash" loading="lazy"><span>Bash</span></div>
+              <div class="tech"><img src="assets/logos/go.svg" alt="Go" loading="lazy"><span>Go</span></div>
+              <div class="tech"><img src="assets/logos/mkdocs.svg" alt="MkDocs" loading="lazy"><span>MkDocs</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <h2 class="section-title">Professional Experience</h2>
+
+    <div class="job">
+      <div class="job-head">
+        <h3>DevOps &amp; Cloud Native Engineer — Client engagement</h3>
+        <span class="period">04/2024 – 10/2025</span>
+      </div>
+      <div class="company">LEMINNOV · Paris, France · Permanent contract</div>
+      <ul>
+        <li>Designed and implemented a scalable multi-tenant GitOps architecture spanning Development, Integration and Production environments, standardizing deployment workflows across teams.
+          <details class="proj">
+            <summary>Project details — Multi-tenant GitOps architecture with Flux</summary>
+            <div class="proj-body">
+              <h4>Scalable multi-tenant GitOps architecture across Dev, Integration and Production environments</h4>
+              <div class="tags"><span class="tag">Flux</span><span class="tag">K8s</span><span class="tag">AWS EKS</span><span class="tag">Helm</span><span class="tag">Kustomize</span><span class="tag">GitLab CI</span><span class="tag">Vault</span><span class="tag">Rancher</span></div>
+              <p class="steps-label">$ implementation guide</p>
+              <ol>
+            <li>Designed the multi-tenant GitOps repository structure: infrastructure/application separation with a dedicated space per team.</li>
+            <li>Deployed and bootstrapped Flux on the EKS clusters of all three environments (Development, Integration, Production).</li>
+            <li>Organized manifests with per-environment Kustomize overlays and HelmReleases for packaged applications.</li>
+            <li>Tenant isolation: dedicated namespaces, RBAC, resource quotas and per-team Flux reconciliation scopes.</li>
+            <li>Standardized deployment workflows: reusable GitLab CI pipeline templates shared by all teams.</li>
+            <li>Integrated Vault for secure management and injection of application secrets.</li>
+            <li>Promoted changes across environments through merge requests, with review and full traceability in Git.</li>
+            <li>Onboarded development teams and documented GitOps conventions.</li>
+              </ol>
+            </div>
+          </details>
+        </li>
+        <li>Implemented centralized monitoring and alerting across multi-cluster EKS environments, improving incident visibility and reducing detection time.
+          <details class="proj">
+            <summary>Project details — Centralized monitoring and alerting on multi-cluster EKS</summary>
+            <div class="proj-body">
+              <h4>Centralized monitoring and alerting for multi-cluster EKS environments</h4>
+              <div class="tags"><span class="tag">Prometheus</span><span class="tag">Alertmanager</span><span class="tag">Grafana</span><span class="tag">PagerDuty</span><span class="tag">AWS EKS</span><span class="tag">Rancher</span><span class="tag">Flux</span><span class="tag">K8s</span></div>
+              <p class="steps-label">$ implementation guide</p>
+              <ol>
+            <li>Deployed the kube-prometheus stack (Prometheus, Alertmanager, exporters) on every EKS cluster, managed with GitOps via Flux.</li>
+            <li>Centralized metrics from all clusters into a single observability instance.</li>
+            <li>Built Grafana dashboards: multi-cluster overview plus detailed per-team and per-application views.</li>
+            <li>Defined standardized alerting rules (cluster health, workloads, application SLOs) with Alertmanager routing by severity and team.</li>
+            <li>PagerDuty integration: automatic escalation of critical incidents to on-call rotations.</li>
+            <li>Used Rancher for centralized visibility and administration of the cluster fleet.</li>
+            <li>Outcome: better incident visibility and a significant reduction in mean time to detect (MTTD).</li>
+              </ol>
+            </div>
+          </details>
+        </li>
+        <li>Developed a Python Kubernetes controller watching GitLab tokens (projects and groups) used across the clusters, with centralized Grafana visualization and proactive alerting before expiration.
+          <details class="proj">
+            <summary>Project details — GitLab token monitoring controller</summary>
+            <div class="proj-body">
+              <h4>Kubernetes controller for GitLab token monitoring with Grafana visualization and proactive alerting</h4>
+              <div class="tags"><span class="tag">Python</span><span class="tag">GitLab</span><span class="tag">K8s</span><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Alertmanager</span><span class="tag">Flux</span></div>
+              <p class="steps-label">$ implementation guide</p>
+              <ol>
+            <li>Built a Python Kubernetes controller automatically discovering GitLab tokens (projects and groups) used across the clusters.</li>
+            <li>Continuous token monitoring through the GitLab API: validity, expiration date, path, group and scope of each token.</li>
+            <li>Exposed token metadata as Prometheus metrics.</li>
+            <li>Built a Grafana dashboard providing a centralized view of all tokens: validity, paths, groups and expiration dates.</li>
+            <li>Set up proactive alerts fired before token expiration, based on a configurable threshold.</li>
+            <li>Deployed the controller with GitOps via Flux across all clusters.</li>
+            <li>Outcome: eliminated incidents caused by expired tokens (blocked pipelines and deployments) thanks to early renewal.</li>
+              </ol>
+            </div>
+          </details>
+        </li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Kubernetes</span><span class="tag">AWS</span><span class="tag">Flux</span>
+        <span class="tag">Helm</span><span class="tag">Kustomize</span><span class="tag">GitLab CI</span>
+        <span class="tag">Rancher</span><span class="tag">Prometheus</span><span class="tag">Grafana</span>
+        <span class="tag">PagerDuty</span><span class="tag">Vault</span><span class="tag">Cloudflare</span>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <h3>DevOps &amp; MLOps Engineer</h3>
+        <span class="period">10/2023 – 04/2024</span>
+      </div>
+      <div class="company">LEMINNOV · Paris, France</div>
+      <ul>
+        <li>Deployed a sovereign, self-hosted and highly available large language model based on retrieval-augmented generation (RAG).
+          <details class="proj">
+            <summary>Project details — Sovereign self-hosted LLM with RAG</summary>
+            <div class="proj-body">
+              <h4>Sovereign, self-hosted and highly available language model (RAG)</h4>
+              <div class="tags"><span class="tag">LLM</span><span class="tag">RAG</span><span class="tag">Python</span><span class="tag">K8s</span><span class="tag">OpenShift</span><span class="tag">Helm</span><span class="tag">ArgoCD</span><span class="tag">GitOps</span></div>
+              <p class="steps-label">$ implementation guide</p>
+              <ol>
+            <li>Selected and deployed an open-source language model self-hosted on the cluster, with no dependency on an external cloud service (data sovereignty).</li>
+            <li>Set up the RAG pipeline: ingestion of business documents, chunking, vectorization and indexing into a vector database.</li>
+            <li>Exposed a query API combining context retrieval and answer generation.</li>
+            <li>High availability: replicated inference services, autoscaling and load balancing.</li>
+            <li>GitOps-driven deployment and configuration (Helm charts + ArgoCD).</li>
+            <li>Secured access and isolated sensitive data.</li>
+              </ol>
+            </div>
+          </details>
+        </li>
+        <li>Built a healthcare (psychiatry) application driven by an AI agent and a dedicated healthcare model: automatic consultation transcription and detailed clinical report generation, deployed on-premise in a sovereign way.
+          <details class="proj">
+            <summary>Project details — AI agent for mental health consultations</summary>
+            <div class="proj-body">
+              <h4>Psychiatric consultation AI assistant — automated transcription and clinical reporting</h4>
+              <div class="tags"><span class="tag">Python</span><span class="tag">LLM</span><span class="tag">Whisper</span><span class="tag">KRO</span><span class="tag">Docker</span><span class="tag">K8s</span><span class="tag">Cloudflare</span></div>
+              <p class="steps-label">$ implementation guide</p>
+              <ol>
+            <li>Audio recording of the consultation by the physician directly from the application.</li>
+            <li>Automatic audio transcription with a self-hosted Whisper model.</li>
+            <li>Reconstruction of the physician/patient dialogue from the transcript.</li>
+            <li>Dialogue analysis by a dedicated healthcare model, orchestrated by an AI agent developed in Python.</li>
+            <li>Generation of a detailed clinical report: patient information, identified pathology, treatment plan and recommendations.</li>
+            <li>Containerized with Docker and deployed on on-premise Kubernetes via KRO (Kube Resource Orchestrator) — no health data ever leaves the infrastructure (sovereignty).</li>
+            <li>Secure application exposure through Cloudflare.</li>
+              </ol>
+            </div>
+          </details>
+        </li>
+        <li>Designed and deployed production-ready Red Hat OpenShift clusters on Proxmox VE with Hypershift, with GitOps-driven operations and automated cluster lifecycle management.
+          <details class="proj">
+            <summary>Project details — OpenShift clusters on Proxmox VE with Hypershift</summary>
+            <div class="proj-body">
+              <h4>Production Red Hat OpenShift clusters on Proxmox VE, GitOps-driven</h4>
+              <div class="tags"><span class="tag">OpenShift</span><span class="tag">Hypershift</span><span class="tag">Proxmox VE</span><span class="tag">OpenTofu</span><span class="tag">Terramate</span><span class="tag">ArgoCD</span><span class="tag">Bash</span><span class="tag">GitOps</span></div>
+              <p class="steps-label">$ implementation guide</p>
+              <ol>
+            <li>Provisioned virtual machines on Proxmox VE with OpenTofu modules orchestrated by Terramate.</li>
+            <li>Deployed the OpenShift management cluster, then HyperShift to host the clusters' control planes.</li>
+            <li>Created hosted clusters via Hypershift: shared control planes, dedicated workers, reduced costs and creation time.</li>
+            <li>Automated cluster lifecycle management: creation, scaling, upgrades and deletion.</li>
+            <li>GitOps-driven operations: all cluster configuration versioned and reconciled by ArgoCD.</li>
+            <li>Bash automation scripts and documentation of operating procedures.</li>
+              </ol>
+            </div>
+          </details>
+        </li>
+        <li>Configured core platform services: multi-cluster management, observability, secrets management and application delivery.
+          <details class="proj">
+            <summary>Project details — Core platform services</summary>
+            <div class="proj-body">
+              <h4>Configuration of the multi-cluster platform's foundational services</h4>
+              <div class="tags"><span class="tag">ArgoCD</span><span class="tag">Kargo</span><span class="tag">Crossplane</span><span class="tag">SOPS</span><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Alertmanager</span><span class="tag">K8s</span></div>
+              <p class="steps-label">$ implementation guide</p>
+              <ol>
+            <li>Set up multi-cluster management: registration, configuration and centralized monitoring of the whole fleet.</li>
+            <li>Deployed the observability stack: Prometheus, Alertmanager and Grafana with dashboards and alerting rules.</li>
+            <li>Secrets management: GitOps encryption with SOPS and secure distribution to applications.</li>
+            <li>Application delivery: ArgoCD for GitOps synchronization and Kargo for promoting releases across environments.</li>
+            <li>On-demand infrastructure provisioning with Crossplane, as declarative Kubernetes resources.</li>
+              </ol>
+            </div>
+          </details>
+        </li>
+        <li>Architected a custom Kubernetes operator integrated with GitLab workflows and the organization's architecture standards, and created reusable Terraform/Helmfile modules.
+          <details class="proj">
+            <summary>Project details — Custom Kubernetes operator and reusable modules</summary>
+            <div class="proj-body">
+              <h4>Custom Kubernetes operator integrated with GitLab workflows</h4>
+              <div class="tags"><span class="tag">Go</span><span class="tag">Kubebuilder</span><span class="tag">GitLab CI</span><span class="tag">OpenTofu</span><span class="tag">Helmfile</span><span class="tag">K8s</span></div>
+              <p class="steps-label">$ implementation guide</p>
+              <ol>
+            <li>Designed CRDs (Custom Resource Definitions) reflecting the organization's architecture standards.</li>
+            <li>Developed the operator in Go with Kubebuilder: reconciliation loops, status and event management.</li>
+            <li>Integrated with GitLab workflows: the operator automates project creation and configuration following internal conventions.</li>
+            <li>Unit and integration tests, GitLab CI pipeline for building, testing and publishing the operator.</li>
+            <li>Created reusable OpenTofu/Terraform modules and Helmfile layers to standardize deployments across teams.</li>
+              </ol>
+            </div>
+          </details>
+        </li>
+      </ul>
+      <div class="tags">
+        <span class="tag">OpenShift</span><span class="tag">Proxmox</span><span class="tag">Hypershift</span>
+        <span class="tag">Scaleway</span><span class="tag">OpenTofu</span><span class="tag">Terramate</span>
+        <span class="tag">Helmfile</span><span class="tag">Go</span><span class="tag">Kubebuilder</span>
+        <span class="tag">ArgoCD</span><span class="tag">Kargo</span><span class="tag">Crossplane</span><span class="tag">SOPS</span><span class="tag">Python</span><span class="tag">Whisper</span><span class="tag">KRO</span><span class="tag">Cloudflare</span>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <h3>Infrastructure &amp; Platform Engineer</h3>
+        <span class="period">07/2022 – 09/2023</span>
+      </div>
+      <div class="company">LEMINUP</div>
+      <ul>
+        <li>Built a self-service developer portal with Backstage, improving service discoverability and reducing onboarding friction.
+          <details class="proj">
+            <summary>Project details — Self-service developer portal with Backstage</summary>
+            <div class="proj-body">
+              <h4>Internal self-service developer portal with Backstage</h4>
+              <div class="tags">
+                <span class="tag">Backstage</span><span class="tag">K8s</span><span class="tag">Helm</span>
+                <span class="tag">PostgreSQL</span><span class="tag">ArgoCD</span><span class="tag">GitLab CI</span>
+                <span class="tag">MkDocs</span><span class="tag">Docker</span><span class="tag">Bash</span>
+              </div>
+              <p class="steps-label">$ implementation guide</p>
+              <ol>
+                <li>Deployed Backstage on Kubernetes via a Helm chart, backed by a PostgreSQL database for persistence.</li>
+                <li>Integrated OAuth authentication through GitLab and mapped users to their teams.</li>
+                <li>Configured the service catalog: automatic component discovery via <code>catalog-info.yaml</code> files in GitLab repositories.</li>
+                <li>Created Software Templates (scaffolding) to generate standardized services: code skeleton, CI pipeline, Helm chart and documentation.</li>
+                <li>Integrated TechDocs with MkDocs: centralized technical documentation, automatically generated in CI.</li>
+                <li>Enabled the Kubernetes plugin to visualize each service's deployment status directly in the portal.</li>
+                <li>ArgoCD integration to track the GitOps synchronization status of applications.</li>
+                <li>Built a custom Backstage Docker image and a GitLab CI build/deploy pipeline.</li>
+                <li>Wrote onboarding documentation and supported teams in adopting the portal.</li>
+              </ol>
+            </div>
+          </details>
+        </li>
+        <li>Automated the deployment of multi-node K3s clusters on bare-metal infrastructure with Tinkerbell.
+          <details class="proj">
+            <summary>Project details — Automated bare-metal K3s cluster deployment with Tinkerbell</summary>
+            <div class="proj-body">
+              <h4>Automated deployment of multi-node K3s clusters on bare-metal infrastructure</h4>
+              <div class="tags">
+                <span class="tag">K3s</span><span class="tag">Tinkerbell</span><span class="tag">Equinix Metal</span>
+                <span class="tag">Terraform</span><span class="tag">Terragrunt</span><span class="tag">Bash</span>
+                <span class="tag">Kubefleet</span><span class="tag">Helmsman</span><span class="tag">GitLab CI</span>
+                <span class="tag">MkDocs</span>
+              </div>
+              <p class="steps-label">$ implementation guide</p>
+              <ol>
+                <li>Provisioned Equinix Metal bare-metal servers with Terraform modules and Terragrunt layers (network, VLANs, addressing).</li>
+                <li>Deployed the Tinkerbell stack: Boots (DHCP/PXE), Tink Server (workflow engine), Hegel (metadata) and Rufio (BMC management).</li>
+                <li>Declared the hardware fleet: Hardware profiles describing each node (MAC addresses, IPs, disks).</li>
+                <li>Wrote Tinkerbell Templates describing provisioning actions: partitioning, OS image writing, cloud-init configuration.</li>
+                <li>Ran Workflows: automated PXE boot and OS installation on every node, with no manual intervention.</li>
+                <li>Automated K3s installation via Bash/cloud-init scripts: server node bootstrap, then agents joining the cluster via token.</li>
+                <li>Registered the K3s clusters in Kubefleet for centralized multi-cluster management.</li>
+                <li>GitOps bootstrap of core services (ingress, monitoring, certificates) with Helmsman.</li>
+                <li>GitLab CI pipeline orchestrating the process end-to-end: from Equinix provisioning to a ready-to-use K3s cluster.</li>
+                <li>Documented the process and runbooks with MkDocs.</li>
+              </ol>
+            </div>
+          </details>
+        </li>
+        <li>Implemented multi-cluster communication with Istio Service Mesh in a GitOps/IaC workflow.
+          <details class="proj">
+            <summary>Project details — Multi-cluster communication with Istio Service Mesh</summary>
+            <div class="proj-body">
+              <h4>Multi-cluster communication across several cloud providers via Service Mesh, with GitOps and IaC</h4>
+              <div class="tags">
+                <span class="tag">K8s</span><span class="tag">Helm</span><span class="tag">Istio</span>
+                <span class="tag">AWS</span><span class="tag">Equinix</span><span class="tag">Azure</span>
+                <span class="tag">Terraform</span><span class="tag">Terragrunt</span><span class="tag">GitLab CI</span>
+                <span class="tag">ArgoCD</span>
+              </div>
+              <p class="steps-label">$ implementation guide</p>
+              <ol>
+                <li>Provisioned EKS, AKS and K3s Kubernetes clusters (on Equinix bare-metal servers) with Terraform modules and Terragrunt layers.</li>
+                <li>Integrated the provisioned clusters into Rancher for centralized management.</li>
+                <li>Installed Istio on all three clusters and set up multi-cluster communication across multiple networks.</li>
+                <li>Configured Istio mTLS to secure communication between services across all clusters.</li>
+                <li>Created a Helm chart defining the demo application: deployment, services and other required Kubernetes resources.</li>
+                <li>Deployed the Helm chart via ArgoCD, installed on the primary cluster.</li>
+                <li>Advanced traffic management with Istio: VirtualServices and Gateways to control routing and load balancing across clusters.</li>
+                <li>Fine-grained authentication and authorization policies to secure inter-cluster traffic.</li>
+                <li>Mesh visualization with Kiali, metrics and traces collected with Grafana and Jaeger.</li>
+                <li>Deployed an Istio Ingress Gateway in each cluster to expose the application externally over HTTPS.</li>
+                <li>Built a GitLab CI/CD pipeline (stages, jobs and dependencies) automating the whole process.</li>
+              </ol>
+            </div>
+          </details>
+        </li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Terraform</span>
+        <span class="tag">Terragrunt</span><span class="tag">Helmsman</span><span class="tag">ArgoCD</span>
+        <span class="tag">Istio</span><span class="tag">Backstage</span><span class="tag">Tinkerbell</span>
+        <span class="tag">Equinix Metal</span><span class="tag">MkDocs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="container">
+    <h2 class="section-title">Certifications</h2>
+
+    <a class="kubestronaut" href="https://www.credly.com/badges/a2b907c5-39d8-43e6-8a39-d29c08d883b6" target="_blank" rel="noopener">
+      <img src="assets/certs/kubestronaut.png" alt="Badge Kubestronaut" width="110" height="110">
+      <div>
+        <h3>🚀 Kubestronaut</h3>
+        <p>Title awarded by the CNCF / Linux Foundation to holders of all 5 official
+        Kubernetes certifications: CKA, CKAD, CKS, KCNA and KCSA.</p>
+      </div>
+    </a>
+
+    <div class="cert-cat">
+      <h3><span>##</span> Kubernetes &amp; Cloud Native</h3>
+      <div class="cert-grid">
+        <a class="cert" href="https://www.credly.com/badges/67bce287-fac9-4570-ac69-164e02717be6" target="_blank" rel="noopener">
+          <img src="assets/certs/cks.png" alt="Badge CKS" loading="lazy">
+          <div>CKS<small>Certified Kubernetes Security Specialist</small></div>
+        </a>
+        <a class="cert" href="https://www.credly.com/badges/9564ed10-afe2-40f9-bc89-a65441a870ec" target="_blank" rel="noopener">
+          <img src="assets/certs/cka.png" alt="Badge CKA" loading="lazy">
+          <div>CKA<small>Certified Kubernetes Administrator</small></div>
+        </a>
+        <a class="cert" href="https://www.credly.com/badges/dff67059-da57-4fe7-bd71-b00de998f86b" target="_blank" rel="noopener">
+          <img src="assets/certs/ckad.png" alt="Badge CKAD" loading="lazy">
+          <div>CKAD<small>Certified Kubernetes Application Developer</small></div>
+        </a>
+        <a class="cert" href="https://www.credly.com/badges/9383ef12-1179-4312-92cf-8e5eba047bbe" target="_blank" rel="noopener">
+          <img src="assets/certs/kcsa.png" alt="Badge KCSA" loading="lazy">
+          <div>KCSA<small>Kubernetes &amp; Cloud Native Security Associate</small></div>
+        </a>
+        <a class="cert" href="https://www.credly.com/badges/d1f48272-28ba-4ff9-995f-4a8440381a90" target="_blank" rel="noopener">
+          <img src="assets/certs/kcna.png" alt="Badge KCNA" loading="lazy">
+          <div>KCNA<small>Kubernetes &amp; Cloud Native Associate</small></div>
+        </a>
+        <a class="cert" href="https://www.credly.com/badges/d94943bb-18cc-4777-88d1-1dedfc9863e7" target="_blank" rel="noopener">
+          <img src="assets/certs/ncp-cn.png" alt="Badge Nutanix NCP Cloud Native" loading="lazy">
+          <div>NCP - Cloud Native 6<small>Nutanix Certified Professional — Kubernetes</small></div>
+        </a>
+      </div>
+    </div>
+
+    <div class="cert-cat">
+      <h3><span>##</span> Cloud</h3>
+      <div class="cert-grid">
+        <a class="cert" href="https://www.credly.com/badges/070de8c1-b412-420f-9753-1c31e8e77375" target="_blank" rel="noopener">
+          <img src="assets/certs/aws-saa.png" alt="Badge AWS Solutions Architect Associate" loading="lazy">
+          <div>AWS SAA<small>Solutions Architect Associate (SAA-C03)</small></div>
+        </a>
+        <a class="cert" href="https://www.credly.com/badges/ded3f644-8180-4bfc-bc78-9c48f27eacda" target="_blank" rel="noopener">
+          <img src="assets/certs/aws-ccp.png" alt="Badge AWS Cloud Practitioner" loading="lazy">
+          <div>AWS Cloud Practitioner<small>Certified Cloud Practitioner</small></div>
+        </a>
+        <a class="cert" href="https://www.credly.com/badges/dce89faf-758f-4f5b-ba12-ae4e4e91bd99" target="_blank" rel="noopener">
+          <img src="assets/certs/az-900.png" alt="Badge Azure Fundamentals" loading="lazy">
+          <div>AZ-900<small>Microsoft Azure Fundamentals</small></div>
+        </a>
+        <a class="cert" href="https://www.credly.com/badges/d5d994b9-e399-4618-9ef9-c15a303693a5" target="_blank" rel="noopener">
+          <img src="assets/certs/finops.png" alt="Badge FinOps Certified Engineer" loading="lazy">
+          <div>FinOps Engineer<small>FinOps Certified Engineer — Linux Foundation</small></div>
+        </a>
+      </div>
+    </div>
+
+    <div class="cert-cat">
+      <h3><span>##</span> Artificial Intelligence</h3>
+      <div class="cert-grid">
+        <a class="cert" href="https://www.credly.com/badges/b26106b2-d6c2-448b-bcd3-d7bcf98040a6" target="_blank" rel="noopener">
+          <img src="assets/certs/aws-aip.png" alt="Badge AWS AI Practitioner" loading="lazy">
+          <div>AWS AI Practitioner<small>Certified AI Practitioner</small></div>
+        </a>
+        <a class="cert" href="https://www.credly.com/badges/f1d75efe-b36b-44f6-bb00-cbf0b5ff2661" target="_blank" rel="noopener">
+          <img src="assets/certs/ncp-ai.png" alt="Badge Nutanix NCP AI" loading="lazy">
+          <div>NCP - AI 6<small>Nutanix Certified Professional — Artificial Intelligence</small></div>
+        </a>
+      </div>
+    </div>
+
+    <p style="margin-top: 1.5rem;"><a href="https://www.credly.com/users/omar-trigui.5b76e2c1" target="_blank" rel="noopener">Verify all my badges on Credly →</a></p>
+  </div>
+</section>
+
+<section id="blog">
+  <div class="container">
+    <h2 class="section-title">Blog</h2>
+    <div class="blog-grid">
+      <a class="blog-card" href="https://leminnov.blog/posts/openshift-enterprise-platform/" target="_blank" rel="noopener">
+        <span class="meta">$ 2026-06 · leminnov.blog</span>
+        <h3>Building a Modern On-Premises OpenShift Platform: GitOps, Operators, Zero Trust, Observability and AI</h3>
+        <p>Building a fully on-premises OpenShift platform combining cloud-like speed and automation with data sovereignty requirements: GitOps, Tekton, Argo CD, multi-cluster management (ACM), operators and OpenShift AI.</p>
+        <div class="tags"><span class="tag">OpenShift</span><span class="tag">GitOps</span><span class="tag">ACM</span><span class="tag">Zero Trust</span><span class="tag">AI</span></div>
+        <span class="read">Read the article →</span>
+      </a>
+      <a class="blog-card" href="https://leminnov.blog/posts/finops/" target="_blank" rel="noopener">
+        <span class="meta">$ 2026-03 · leminnov.blog</span>
+        <h3>Advanced FinOps: The Economic Engineering of Cloud-Native</h3>
+        <p>FinOps as a full-fledged engineering discipline in cloud-native environments: continuous cost management integrated into CI/CD pipelines, autoscaling, technical governance and LLM cost control.</p>
+        <div class="tags"><span class="tag">FinOps</span><span class="tag">Kubernetes</span><span class="tag">IaC</span><span class="tag">Autoscaling</span><span class="tag">LLM</span></div>
+        <span class="read">Read the article →</span>
+      </a>
+      <a class="blog-card" href="https://leminnov.blog/posts/multi--tenancy/" target="_blank" rel="noopener">
+        <span class="meta">$ 2025-10 · leminnov.blog</span>
+        <h3>Building a GitOps Multi-Tenant Kubernetes Architecture using Flux</h3>
+        <p>Building a scalable and secure multi-tenant Kubernetes architecture with GitOps and Flux: team isolation, centralized configuration management and deployment automation.</p>
+        <div class="tags"><span class="tag">Kubernetes</span><span class="tag">GitOps</span><span class="tag">Flux</span><span class="tag">Multi-tenancy</span><span class="tag">Kustomize</span></div>
+        <span class="read">Read the article →</span>
+      </a>
+      <a class="blog-card" href="https://leminnov.blog/posts/vila-nvidia/" target="_blank" rel="noopener">
+        <span class="meta">$ 2025-03 · leminnov.blog</span>
+        <h3>AI-Powered Live Video Analysis for Real-Time Insights</h3>
+        <p>Deploying edge AI with NVIDIA's VILA1.5-3b model on Jetson devices: configuring and monitoring real-time video processing for multimodal applications.</p>
+        <div class="tags"><span class="tag">Edge AI</span><span class="tag">NVIDIA</span><span class="tag">Jetson</span><span class="tag">VLM</span><span class="tag">Real-time</span></div>
+        <span class="read">Read the article →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="formation">
+  <div class="container">
+    <h2 class="section-title">Education</h2>
+    <div class="edu-item">
+      <h3>Engineering degree in Computer Science — Cloud Computing specialization</h3>
+      <p class="meta">SUP'COM — Higher School of Communication of Tunis · 2020 – 2023</p>
+      <p class="edu-detail">Engineering curriculum covering computer science (algorithms, programming, databases, operating systems), networking (architectures, protocols, security) and cloud computing (virtualization, containerization, distributed architectures, cloud services).</p>
+    </div>
+    <div class="edu-item">
+      <h3>Preparatory cycle in physics and mathematics</h3>
+      <p class="meta">Preparatory Institute for Engineering Studies of Sfax (IPEIS) · 2018 – 2020</p>
+      <p class="edu-detail">Intensive curriculum in mathematics (analysis, algebra), physics and computer science, preparing for the national engineering schools entrance exam.</p>
+    </div>
+    <div class="edu-item">
+      <h3>Baccalaureate in Mathematics — With highest honors</h3>
+      <p class="meta">Pilot High School of Sfax · 2014 – 2018</p>
+    </div>
+  </div>
+</section>
+
+<section id="langues">
+  <div class="container">
+    <h2 class="section-title">Languages</h2>
+    <div class="lang-grid">
+      <div class="lang-card">
+        <div class="lang-head">
+          <h3>🇹🇳 Arabic</h3>
+          <span class="lang-level">Native</span>
+        </div>
+        <p>Mother tongue.</p>
+      </div>
+      <div class="lang-card">
+        <div class="lang-head">
+          <h3>🇫🇷 French</h3>
+          <span class="lang-level">B2</span>
+        </div>
+        <p>DELF B2 — Common European Framework of Reference for Languages (Institut Français).</p>
+        <a class="doc-link" href="assets/docs/view.html?doc=delf" target="_blank" rel="noopener">View the DELF certificate →</a>
+      </div>
+      <div class="lang-card">
+        <div class="lang-head">
+          <h3>🇬🇧 English</h3>
+          <span class="lang-level">B2</span>
+        </div>
+        <p>TOEIC Listening &amp; Reading — 765/990 (ETS).</p>
+        <a class="doc-link" href="assets/docs/view.html?doc=toeic" target="_blank" rel="noopener">View the TOEIC score →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="benevolat">
+  <div class="container">
+    <h2 class="section-title">Volunteering &amp; Achievements</h2>
+    <div class="edu-item">
+      <h3>DevOps Trainer</h3>
+      <p class="meta">ENIS University — Sfax, Tunisia · 2023 – 2024</p>
+      <p class="meta">Delivered Kubernetes training combining theory and hands-on labs for engineering students.</p>
+    </div>
+    <div class="edu-item">
+      <h3>Media Manager</h3>
+      <p class="meta">IEEE Sup'Com Student Branch — Tunis, Tunisia · 2021 – 2022</p>
+      <p class="meta">Managed social media and visual content, increasing the chapter's engagement and visibility.</p>
+    </div>
+    <div class="edu-item">
+      <h3>🏆 Mathématiques Sans Frontières Rally of Toulouse — 1st prize of the super final</h3>
+      <p class="meta">Tunisian Association of Mathematical Sciences · Toulouse, France · May 2016</p>
+      <p class="meta">Took part in the super final of the mathematics rally with the 2nd Sciences 8 class of the Pilot High School of Sfax, awarded first prize.</p>
+      <p class="meta"><a href="assets/docs/view.html?doc=rallye" target="_blank" rel="noopener">View the certificate →</a></p>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="links">
+      <a href="mailto:trigui.omar@proton.me">✉️ trigui.omar@proton.me</a>
+      <a href="tel:+33620877142">📞 +33 6 20 87 71 42</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.credly.com/users/omar-trigui.5b76e2c1" target="_blank" rel="noopener">Credly</a>
+    </div>
+    <p>Paris, France · French (DELF B2) · English (TOEIC B2) · Arabic (native)</p>
+    <p class="mono" style="margin-top: 0.5rem;">© 2026 Omar Trigui — built with HTML/CSS, hosted on GitHub Pages</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.querySelector(".theme-toggle");
+  function apply(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    btn.textContent = theme === "light" ? "☀️" : "🌙";
+  }
+  apply(localStorage.getItem("theme") || "dark");
+  btn.addEventListener("click", function () {
+    var next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+    localStorage.setItem("theme", next);
+    apply(next);
+  });
+})();
+(function () {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.documentElement.classList.add("js-typing");
+
+  var h1 = document.querySelector(".hero h1");
+  var h2 = document.querySelector(".hero h2");
+  var kicker = document.querySelector(".hero .kicker .type");
+  var lines = [
+    { el: h1, text: h1.textContent, speed: 75 },
+    { el: h2, text: h2.textContent, speed: 28 }
+  ];
+  lines.forEach(function (l) { l.el.textContent = ""; });
+
+  var cursor = document.createElement("span");
+  cursor.className = "type-cursor";
+  cursor.setAttribute("aria-hidden", "true");
+
+  function typeLine(i) {
+    if (i >= lines.length) {
+      document.documentElement.classList.add("hero-done");
+      return; // le curseur reste à la fin du titre et clignote
+    }
+    var line = lines[i];
+    var chars = Array.from(line.text);
+    var pos = 0;
+    line.el.appendChild(cursor);
+    (function tick() {
+      if (pos < chars.length) {
+        cursor.before(document.createTextNode(chars[pos++]));
+        setTimeout(tick, line.speed);
+      } else {
+        setTimeout(function () { typeLine(i + 1); }, 350);
+      }
+    })();
+  }
+
+  // démarre après la frappe de "$ whoami" (1.1s + délai 0.4s)
+  setTimeout(function () {
+    kicker.style.borderRight = "none";
+    kicker.style.animation = "typing 1.1s steps(8, end) 0.4s forwards";
+    typeLine(0);
+  }, 1700);
+})();
+</script>
+</body>
+</html>

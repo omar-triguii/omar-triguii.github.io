@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document — Omar Trigui</title>
+<meta name="robots" content="noindex">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d1117; color: #e6edf3; min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 1.5rem; gap: 1rem;
+  }
+  h1 { font-size: 1rem; font-weight: 600; color: #8b949e; }
+  img {
+    max-width: min(100%, 1100px); max-height: 85vh; object-fit: contain;
+    border-radius: 8px; box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+    background: #fff;
+  }
+  a.back { color: #58a6ff; font-size: 0.875rem; text-decoration: none; }
+  a.back:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<h1 id="title">Document</h1>
+<img id="doc" alt="Document" src="">
+<a class="back" href="../../index.html">← Retour au site</a>
+<script>
+  var docs = {
+    "toeic":  { file: "toeic-765.jpg",       title: "TOEIC Listening & Reading — 765/990 (ETS)" },
+    "delf":   { file: "delf-b2.jpg",         title: "Attestation DELF B2 — Institut Français" },
+    "rallye": { file: "rallye-toulouse.jpg", title: "Rallye Mathématiques Sans Frontières de Toulouse — 2016" }
+  };
+  var key = new URLSearchParams(location.search).get("doc");
+  var d = docs[key] || docs["toeic"];
+  document.getElementById("doc").src = d.file;
+  document.getElementById("doc").alt = d.title;
+  document.getElementById("title").textContent = d.title;
+  document.title = d.title + " — Omar Trigui";
+</script>
+</body>
+</html>
