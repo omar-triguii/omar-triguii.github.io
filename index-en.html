@@ -123,6 +123,21 @@
   .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--btn-text-on-accent); }
   .btn.primary:hover { opacity: 0.9; }
 
+  /* Contact reveal */
+  .contact-reveal { position: relative; }
+  .contact-reveal > summary { list-style: none; cursor: pointer; }
+  .contact-reveal > summary::-webkit-details-marker { display: none; }
+  .contact-reveal .contact-info {
+    position: absolute; top: calc(100% + 0.5rem); left: 0; z-index: 20;
+    display: flex; flex-direction: column; gap: 0.5rem;
+    min-width: max-content; padding: 0.85rem 1rem;
+    background: var(--bg-alt); border: 1px solid var(--border);
+    border-radius: 8px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    animation: unfold 0.2s ease;
+  }
+  .contact-reveal .contact-info a { color: var(--text); font-size: 0.9rem; font-weight: 500; }
+  .contact-reveal .contact-info a:hover { color: var(--accent); }
+
   /* Sections */
   section { padding: 3.5rem 0; border-top: 1px solid var(--border); }
   section h2.section-title {
@@ -395,8 +410,14 @@
       reliability, security and delivery speed.
     </p>
     <div class="links">
-      <a class="btn primary" href="mailto:trigui.omar@proton.me">Contact me</a>
-      <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+      <details class="contact-reveal">
+        <summary class="btn primary">Contact me</summary>
+        <div class="contact-info">
+          <a href="mailto:trigui.omar@proton.me">✉️ trigui.omar@proton.me</a>
+          <a href="tel:+33620877142">📞 +33 6 20 87 71 42</a>
+        </div>
+      </details>
+      <a class="btn" href="https://www.linkedin.com/in/omar--trigui/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn" href="https://www.credly.com/users/omar-trigui.5b76e2c1" target="_blank" rel="noopener">Credly badges</a>
     </div>
   </div>
@@ -1105,7 +1126,7 @@
     <div class="links">
       <a href="mailto:trigui.omar@proton.me">✉️ trigui.omar@proton.me</a>
       <a href="tel:+33620877142">📞 +33 6 20 87 71 42</a>
-      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/omar--trigui/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://www.credly.com/users/omar-trigui.5b76e2c1" target="_blank" rel="noopener">Credly</a>
     </div>
     <p>Paris, France · French (DELF B2) · English (TOEIC B2) · Arabic (native)</p>
